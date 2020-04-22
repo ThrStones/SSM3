@@ -1,4 +1,4 @@
-package com.galaxy.web.controller;
+package com.galaxy.web.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

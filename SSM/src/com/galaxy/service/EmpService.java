@@ -9,11 +9,11 @@ public interface EmpService {
 
 	public List<Emp> queryAllByPage(Emp emp, int pageNum, int pageSize);
 
-	public Map<String,Integer> queryTotalCount(Emp emp, int pageNum, int pageSize);
+	public Map<String,Integer> queryTotalPage(Emp emp, int pageNum, int pageSize);
 
 	public void insert(Emp emp);
 
-	public void delete(int id);
+	public void delete(int[] ids);
 
 	public Emp queryById(int id);
 

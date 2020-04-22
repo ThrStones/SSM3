@@ -11,6 +11,14 @@ public class Emp {
 	private String role;
 	private String state;
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String geteNo() {
 		return eNo;
 	}

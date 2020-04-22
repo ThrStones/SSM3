@@ -29,7 +29,7 @@ public class EmpServiceImpl implements EmpService {
 	}
 
 	@Override
-	public Map<String, Integer> queryTotalCount(Emp emp, int pageNum, int pageSize) {
+	public Map<String, Integer> queryTotalPage(Emp emp, int pageNum, int pageSize) {
 		int totalCount = empDao.queryTotalCount(emp);
 		int totalPage = totalCount % pageSize > 0 ? totalCount / pageSize + 1 : totalCount / pageSize;
 		
@@ -42,26 +42,24 @@ public class EmpServiceImpl implements EmpService {
 
 	@Override
 	public void insert(Emp emp) {
-		// TODO Auto-generated method stub
-
+		empDao.insert(emp);
 	}
 
 	@Override
-	public void delete(int id) {
-		// TODO Auto-generated method stub
-
+	public void delete(int[] ids) {
+		for (int id : ids) {
+			empDao.delete(id);
+		}
 	}
 
 	@Override
 	public Emp queryById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return empDao.queryById(id);
 	}
 
 	@Override
 	public int update(Emp emp) {
-		// TODO Auto-generated method stub
-		return 0;
+		return empDao.update(emp);
 	}
 
 }
