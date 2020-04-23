@@ -26,9 +26,10 @@
 		<div class="col-lg-12">
 			<section class="panel">
 				<div class="panel-body">
-<form class="form-inline" role="form" method="post" action="empList">
+<form class="form-inline" role="form" method="get" action="empList">
 	<div class="form-group">
 		<label class="sr-only" for="username">员工号</label> 
+		<input name="pageNum" value="1" type="hidden">
 		<input class="form-control" name="eNo" value="" id="username" placeholder="员工号" type="text">
 	</div>
 	<div class="form-group">
@@ -38,7 +39,7 @@
 	<button type="submit" class="btn btn-round btn-info" id="search_but">检索</button>
 	<button type="button" class="btn btn-round btn-default" id="clean_but">清空</button>
 	<button type="button" class="btn  btn-info" id="add_but" 
-	onclick="location.href='/Spring_Project/employeeAdd.jsp'" style="margin-left:50px;">添加员工</button>
+	onclick="location.href='insertPage'" style="margin-left:50px;">添加员工</button>
 	<button type="button" class="btn  btn-success" onclick="updateUser()" id="edit_but">编辑员工</button>
 	<button type="button" class="btn  btn-success" onclick="deleteUser()">删除员工</button>
 </form>
@@ -100,10 +101,10 @@
 		<div class="dataTables_paginate paging_bootstrap pagination">
 			<ul>
 				<li class="prev">
-					<a href="deptList?pageNum=1">首页</a>
+					<a href="empList?pageNum=1">首页</a>
 				</li>
 				<c:if test="${ pageNum>1 }">
-					<li class="prev"><a href="deptList?pageNum=${ pageNum-1 }">上一页</a></li>
+					<li class="prev"><a href="empList?pageNum=${ pageNum-1 }">上一页</a></li>
 				</c:if>
 				<li class="active">
 					<a href="">
@@ -111,9 +112,9 @@
 					</a>
 				</li>
 				<c:if test="${ pageNum<countMap.totalPage }">
-			    	<li class="prev"><a href="deptList?pageNum=${ pageNum+1 }">下一页</a></li>
+			    	<li class="prev"><a href="empList?pageNum=${ pageNum+1 }">下一页</a></li>
 			    </c:if>
-				<li class="prev"><a href="deptList?pageNum=${ countMap.totalPage }">尾页</a></li>
+				<li class="prev"><a href="empList?pageNum=${ countMap.totalPage }">尾页</a></li>
 			</ul>
 		</div>
 	</div>
@@ -170,7 +171,8 @@
 			alert("不能选择多条数据修改！！！")
 	   }
 	   else{
-		   $("#deleteForm").attr('action',"/Spring_Project/employee_selectOne"); 
+		   $("#deleteForm").attr('action',"queryById"); 
+		   $("#deleteForm").attr('method',"GET"); 
 		   $('#deleteForm').submit();
 	   }
 	   

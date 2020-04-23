@@ -29,18 +29,18 @@
     <mvc:resources mapping="/images/**" location="/img/"/>
     <mvc:resources mapping="/js/**" location="/js/"/>
     
-    <mvc:interceptors>
+<!--     <mvc:interceptors>
     	<mvc:interceptor>
-    		<!-- 需要拦截的请求地址 -->
+    		需要拦截的请求地址
     		<mvc:mapping path="/**"/>
-    		<!-- 不需要拦截的请求地址 -->
+    		不需要拦截的请求地址
     		<mvc:exclude-mapping path="/css/**"/>
     		<mvc:exclude-mapping path="/images/**"/>
     		<mvc:exclude-mapping path="/js/**"/>
-    		<!-- 不需要拦截登录功能，只有登录成功了，session中才会有值 -->
+    		不需要拦截登录功能，只有登录成功了，session中才会有值
     		<mvc:exclude-mapping path="/account/login"/>
     		<bean class="com.galaxy.web.controller.LoginInterceptor"></bean>
     	</mvc:interceptor>
     </mvc:interceptors>
-
+ -->
 </beans>

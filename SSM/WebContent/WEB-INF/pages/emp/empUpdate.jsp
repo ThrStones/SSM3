@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html style="overflow: hidden;" lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -53,12 +54,12 @@
 		</header>
 		<div class="panel-body">
 <form novalidate="novalidate" class="form-horizontal tasi-form" 
-	method="post" id="addForm" action="/Spring_Project/employee_update">
-	<input type="hidden" name="id" value="${employee.id}"/>
+	method="post" id="addForm" action="update">
+	<input type="hidden" name="id" value="${emp.id}"/>
 	<div class="form-group">
 		<label class="control-label col-md-3">员工姓名</label>
 		<div class="col-md-3 col-xs-11">
-			<input name="name" id="name" value="${employee.name}"
+			<input name="name" id="name" value="${emp.name}"
 			class="form-control form-control-inline input-medium default-date-picker" 
 			style="width:80px;" type="text">
 			<span class="help-block" style="color: red;"></span>
@@ -67,7 +68,7 @@
 	<div class="form-group">
 		<label class="control-label col-md-3">性别</label>
 		<div class="col-md-3 col-xs-11">
-			<input name="sex" value="男" type="radio">
+			<input name="sex" value="男" type="radio" checked="checked">
 			<label for="user_sex男">男</label>
 			<input name="sex" value="女" type="radio">
 			<label for="user_sex女">女</label>
@@ -78,7 +79,7 @@
 	<div class="form-group">
 		<label class="control-label col-md-3">联系电话</label>
 		<div class="col-md-3 col-xs-11">
-			<input name="phone" id="phone" value="${employee.phone}"
+			<input name="phone" id="phone" value="${emp.phone}"
 			class="form-control form-control-inline input-medium default-date-picker" 
 			style="width:120px;" type="text">
 			<span class="help-block" style="color: red;"></span>
@@ -87,11 +88,12 @@
 	<div class="form-group">
 		<label class="control-label col-md-3">所属部门</label>
 		<div class="col-md-3 col-xs-11">
-			<select name="department" id="department" 
+			<select name="dept" id="dept" 
 			class="form-control form-control-inline input-medium default-date-picker" 
 			style="width:240px;">
-              <option value="人事部">人事部</option>
-              <option value="研发部">研发部</option>
+              <c:forEach items="${ deptList }" var="dept">
+              	<option value="${ dept.name }">${ dept.name }</option>
+              </c:forEach>
 			</select>
 			<span class="help-block" style="color: red;"></span>
 		</div>
@@ -135,9 +137,9 @@
       $(".knob").knob();
       
       window.onload=function(){
-    	  $("#authority").find("option[value='${employee.role}']").attr("selected","selected");
-    	  $("#department").find("option[value='${employee.department}']").attr("selected","selected");
-    	  $("input[value='${employee.sex}']").attr("checked","checked");
+    	  $("#authority").find("option[value='${emp.role}']").attr("selected","selected");
+    	  $("#dept").find("option[value='${emp.dept}']").attr("selected","selected");
+    	  $("input[value='${emp.sex}']").attr("checked","checked");
       }
     </script>
 

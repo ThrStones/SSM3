@@ -1,5 +1,7 @@
 package com.galaxy.service.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +34,7 @@ public class EmpServiceImpl implements EmpService {
 	public Map<String, Integer> queryTotalPage(Emp emp, int pageNum, int pageSize) {
 		int totalCount = empDao.queryTotalCount(emp);
 		int totalPage = totalCount % pageSize > 0 ? totalCount / pageSize + 1 : totalCount / pageSize;
-		
+
 		HashMap<String, Integer> countMap = new HashMap<String, Integer>();
 		countMap.put("totalCount", totalCount);
 		countMap.put("totalPage", totalPage);
@@ -42,6 +44,9 @@ public class EmpServiceImpl implements EmpService {
 
 	@Override
 	public void insert(Emp emp) {
+		String eNo = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+		emp.seteNo("No." + eNo);
+		emp.setState("Õý³£");
 		empDao.insert(emp);
 	}
 
