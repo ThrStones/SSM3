@@ -13,9 +13,9 @@ public class LoginInterceptor implements HandlerInterceptor {
 			throws Exception {
 		Account loginAccount = (Account) request.getSession().getAttribute("loginAccount");
 		if (loginAccount == null) {
-//			request.setAttribute("errorMsg", "用户名或密码错误!");
-//			request.getRequestDispatcher("login.jsp");
-			response.sendRedirect("../login.jsp");
+			request.setAttribute("errorMsg", "请重新登录!");
+			request.getRequestDispatcher("login.jsp").forward(request, response);;
+//			response.sendRedirect("../login.jsp");
 			return false;
 		} else {
 			return true;
