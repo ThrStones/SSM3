@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
@@ -20,7 +19,7 @@ public interface EmpDao {
 			+ "select * from emp "
 			+ "<where>"
 			+ "<if test=\"eNo!=null and eNo!=''\">"
-			+ "<bind eNo=\"empNo\" value=\"'%'+eNo+'%'\"/>"
+			+ "<bind name=\"empNo\" value=\"'%'+eNo+'%'\"/>"
 			+ "and eNo like #{empNo} "
 			+ "</if>"
 			+ "<if test=\"name!=null and name!=''\">"
@@ -35,7 +34,7 @@ public interface EmpDao {
 			+ "select count(*) from emp "
 			+ "<where>"
 			+ "<if test=\"eNo!=null and eNo!=''\">"
-			+ "<bind eNo=\"empNo\" value=\"'%'+eNo+'%'\"/>"
+			+ "<bind name=\"empNo\" value=\"'%'+eNo+'%'\"/>"
 			+ "and eNo like #{empNo} "
 			+ "</if>"
 			+ "<if test=\"name!=null and name!=''\">"
