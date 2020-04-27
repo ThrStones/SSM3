@@ -2,7 +2,6 @@ package com.galaxy.dao;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.galaxy.bean.Dept;
 
 @Repository
-public interface DeptDao {
+public interface DeptDao extends BaseDao<Dept>{
 	
 	/*
 	 * 分析条件查询
@@ -55,9 +54,6 @@ public interface DeptDao {
 	@Insert("insert into dept values(0,#{departNo},#{name},#{description})")
 	@Options(useGeneratedKeys = true,keyProperty = "id")
 	public void insert(Dept dept);
-	
-	@Delete("delete from dept where id=#{id}")
-	public void delete(int id);
 	
 	@Select("select * from dept where id=#{id}")
 	public Dept queryById(int id);

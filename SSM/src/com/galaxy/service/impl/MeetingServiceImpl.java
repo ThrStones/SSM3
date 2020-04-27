@@ -21,20 +21,20 @@ public class MeetingServiceImpl implements MeetingService {
 	private MeetingDao meetingDao;
 
 	@Override
-	public List<Meeting> queryAllByPage(int pageNum, int pageSize, String title) {
+	public List<Meeting> queryAllByPage(int pageNum, int pageSize, Meeting meeting) {
 
 		PageHelper.startPage(pageNum, pageSize);
-		List<Meeting> meetingList = meetingDao.queryAllByPage(title);
+		List<Meeting> meetingList = meetingDao.queryAllByPage(meeting.getTitle());
 		new PageInfo<Meeting>(meetingList);
 
 		return meetingList;
 	}
 
 	@Override
-	public Map<String, Integer> queryTotalPage(int pageSize, String title) {
+	public Map<String, Integer> queryTotalPage(int pageSize, Meeting meeting) {
 		HashMap<String, Integer> countMap = new HashMap<String, Integer>();
 
-		int totalCount = meetingDao.queryTotalCount(title);
+		int totalCount = meetingDao.queryTotalCount(meeting.getTitle());
 		int totalPage = totalCount % pageSize > 0 ? totalCount / pageSize + 1 : totalCount / pageSize;
 
 		countMap.put("totalCount", totalCount);
@@ -49,9 +49,9 @@ public class MeetingServiceImpl implements MeetingService {
 	}
 
 	@Override
-	public void delete(int[] ids) {
+	public void delete(int[] ids,String tableName) {
 		for (int id : ids) {
-			meetingDao.delete(id);
+			meetingDao.delete(id,tableName);
 		}
 	}
 

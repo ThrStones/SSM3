@@ -28,8 +28,8 @@ public class EmpController extends BaseController {
 
 	@GetMapping("empList")
 	public String queryAllByPage(int pageNum, Emp emp, Model model) {
-		List<Emp> empList = empService.queryAllByPage(emp, pageNum, pageSize);
-		Map<String, Integer> countMap = empService.queryTotalPage(emp, pageNum, pageSize);
+		List<Emp> empList = empService.queryAllByPage(pageNum, pageSize,emp);
+		Map<String, Integer> countMap = empService.queryTotalPage(pageSize,emp);
 		model.addAttribute("empList", empList);
 		model.addAttribute("countMap", countMap);
 		model.addAttribute("pageNum", pageNum);
@@ -38,7 +38,7 @@ public class EmpController extends BaseController {
 
 	@PostMapping("delete")
 	public String delete(int[] ids) {
-		empService.delete(ids);
+		empService.delete(ids,"emp");
 		return "redirect:empList?pageNum=1";
 	}
 
@@ -87,8 +87,8 @@ public class EmpController extends BaseController {
 	}
 
 	protected List<Dept> queryAllDept() {
-		Integer totalCount = deptService.queryTotalPage(pageSize, "").get("totalCount");
-		List<Dept> deptList = deptService.queryAllByPage(1, totalCount, "");
+		Integer totalCount = deptService.queryTotalPage(pageSize,new Dept()).get("totalCount");
+		List<Dept> deptList = deptService.queryAllByPage(1, totalCount,new Dept());
 		return deptList;
 	}
 

@@ -2,30 +2,22 @@ package com.galaxy.bean;
 
 import java.util.Date;
 
-public class Meeting {
+public class Meeting extends Base{
 
-	private int id;
-	private int empId;
 	private Date beginTime;
 	private Date endTime;
 	private String title;
 	private String content;
 	private String address;
-
-	public int getId() {
-		return id;
+	
+	private Account account;
+	
+	public Account getAccount() {
+		return account;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getEmpId() {
-		return empId;
-	}
-
-	public void setEmpId(int empId) {
-		this.empId = empId;
+	public void setAccount(Account account) {
+		this.account = account;
 	}
 
 	public Date getBeginTime() {

@@ -1,8 +1,7 @@
 package com.galaxy.bean;
 
-public class Emp {
+public class Emp extends Base{
 
-	private int id;
 	private String eNo;
 	private String name;
 	private String sex;
@@ -10,14 +9,6 @@ public class Emp {
 	private String dept;
 	private String role;
 	private String state;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String geteNo() {
 		return eNo;

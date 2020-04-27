@@ -2,7 +2,6 @@ package com.galaxy.dao;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.galaxy.bean.Emp;
 
 @Repository
-public interface EmpDao {
+public interface EmpDao extends BaseDao<Emp>{
 	
 	
 	@Select("<script>"
@@ -45,14 +44,9 @@ public interface EmpDao {
 			+ "</script>")
 	public int queryTotalCount(Emp emp);
 	
-	
-	
 	@Insert("insert into emp values(0,#{eNo},#{name},#{sex},#{phone},#{dept},#{role},#{state})")
 	@Options(useGeneratedKeys = true, keyProperty = "id")
 	public void insert(Emp emp);
-	
-	@Delete("delete from emp where id=#{id}")
-	public void delete(int id);
 	
 	@Select("select * from emp where id=#{id}")
 	public Emp queryById(int id);

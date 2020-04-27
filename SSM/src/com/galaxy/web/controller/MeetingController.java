@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.galaxy.bean.Account;
 import com.galaxy.bean.Meeting;
 import com.galaxy.service.MeetingService;
 
@@ -25,10 +24,10 @@ public class MeetingController extends BaseController {
 	private MeetingService meetingService;
 
 	@GetMapping("meetingList")
-	public String meetingList(int pageNum, String title, Model model) {
-		List<Meeting> meetingList = meetingService.queryAllByPage(pageNum, pageSize, title);
+	public String meetingList(int pageNum, Meeting meeting, Model model) {
+		List<Meeting> meetingList = meetingService.queryAllByPage(pageNum, pageSize, meeting);
 		model.addAttribute("meetingList", meetingList);
-		Map<String, Integer> countMap = meetingService.queryTotalPage(pageSize, title);
+		Map<String, Integer> countMap = meetingService.queryTotalPage(pageSize, meeting);
 		model.addAttribute("countMap", countMap);
 		model.addAttribute("pageNum", pageNum);
 		return "meeting/meetingList";
@@ -61,7 +60,7 @@ public class MeetingController extends BaseController {
 
 	@PostMapping("delete")
 	public String delete(int[] ids) {
-		meetingService.delete(ids);
+		meetingService.delete(ids,"meeting");
 		return "redirect:meetingList?pageNum=1";
 	}
 

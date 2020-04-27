@@ -1,26 +1,9 @@
 package com.galaxy.bean;
 
-import java.util.Date;
+public class Account extends Base{
 
-public class Account {
-
-	private int id;
 	private String name;
 	private String password;
-
-	private Date createTime;
-	private Date updateTime;
-
-	private String remark;
-	private boolean deleteFlag;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;

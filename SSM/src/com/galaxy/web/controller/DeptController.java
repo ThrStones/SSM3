@@ -30,7 +30,7 @@ public class DeptController {
 	private DeptService deptService;
 	
 	@GetMapping("deptList")
-	public String deptList(int pageNum,String name,Model model) {
+	public String deptList(int pageNum,Dept dept,Model model) {
 		
 		
 		//分页查询部门信息
@@ -49,10 +49,10 @@ public class DeptController {
 		 * 5、查询总页数--查询总条数--计算
 		 */
 		
-		List<Dept> deptList = deptService.queryAllByPage(pageNum, pageSize, name);
+		List<Dept> deptList = deptService.queryAllByPage(pageNum, pageSize, dept);
 		model.addAttribute("deptList", deptList);
 		
-		Map<String, Integer> countMap = deptService.queryTotalPage(pageSize, name);
+		Map<String, Integer> countMap = deptService.queryTotalPage(pageSize, dept);
 
 		model.addAttribute("countMap", countMap);
 		
@@ -91,7 +91,7 @@ public class DeptController {
 	
 	@PostMapping("delete")
 	public String delete(int[] ids) {
-		deptService.delete(ids);
+		deptService.delete(ids,"dept");
 		return "redirect:deptList?pageNum=1";
 	}
 	

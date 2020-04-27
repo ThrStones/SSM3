@@ -22,20 +22,20 @@ public class DeptServiceImpl implements DeptService {
 	private DeptDao deptDao;
 
 	@Override
-	public List<Dept> queryAllByPage(int pageNum, int pageSize, String name) {
+	public List<Dept> queryAllByPage(int pageNum, int pageSize, Dept dept) {
 
 		PageHelper.startPage(pageNum, pageSize);
-		List<Dept> deptList = deptDao.queryAllByPage(name);
+		List<Dept> deptList = deptDao.queryAllByPage(dept.getName());
 		new PageInfo<Dept>(deptList);
 
 		return deptList;
 	}
 
 	@Override
-	public Map<String, Integer> queryTotalPage(int pageSize, String name) {
+	public Map<String, Integer> queryTotalPage(int pageSize, Dept dept) {
 		HashMap<String, Integer> countMap = new HashMap<String, Integer>();
 
-		int totalCount = deptDao.queryTotalCount(name);
+		int totalCount = deptDao.queryTotalCount(dept.getName());
 		int totalPage = totalCount % pageSize > 0 ? totalCount / pageSize + 1 : totalCount / pageSize;
 
 		countMap.put("totalCount", totalCount);
@@ -50,9 +50,9 @@ public class DeptServiceImpl implements DeptService {
 	}
 
 	@Override
-	public void delete(int[] ids) {
+	public void delete(int[] ids,String tableName) {
 		for (int id : ids) {
-			deptDao.delete(id);
+			deptDao.delete(id,tableName);
 		}
 	}
 

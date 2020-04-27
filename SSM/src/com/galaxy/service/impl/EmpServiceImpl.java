@@ -23,7 +23,7 @@ public class EmpServiceImpl implements EmpService {
 	private EmpDao empDao;
 
 	@Override
-	public List<Emp> queryAllByPage(Emp emp, int pageNum, int pageSize) {
+	public List<Emp> queryAllByPage(int pageNum, int pageSize,Emp emp) {
 		PageHelper.startPage(pageNum, pageSize);
 		List<Emp> empList = empDao.queryAllByPage(emp);
 		new PageInfo<Emp>(empList);
@@ -31,7 +31,7 @@ public class EmpServiceImpl implements EmpService {
 	}
 
 	@Override
-	public Map<String, Integer> queryTotalPage(Emp emp, int pageNum, int pageSize) {
+	public Map<String, Integer> queryTotalPage(int pageSize,Emp emp) {
 		int totalCount = empDao.queryTotalCount(emp);
 		int totalPage = totalCount % pageSize > 0 ? totalCount / pageSize + 1 : totalCount / pageSize;
 
@@ -51,9 +51,9 @@ public class EmpServiceImpl implements EmpService {
 	}
 
 	@Override
-	public void delete(int[] ids) {
+	public void delete(int[] ids,String tableName) {
 		for (int id : ids) {
-			empDao.delete(id);
+			empDao.delete(id,tableName);
 		}
 	}
 

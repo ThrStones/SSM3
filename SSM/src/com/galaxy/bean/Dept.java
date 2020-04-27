@@ -1,19 +1,10 @@
 package com.galaxy.bean;
 
-public class Dept {
+public class Dept extends Base{
 
-	private int id;
 	private String departNo;
 	private String name;
 	private String description;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getDepartNo() {
 		return departNo;
@@ -37,12 +28,6 @@ public class Dept {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	@Override
-	public String toString() {
-		return "Dept [id=" + id + ", departNo=" + departNo + ", name=" + name + ", description=" + description
-				+ "]";
 	}
 
 }

@@ -10,5 +10,8 @@ public interface AccountDao {
 	
 	@Select("select * from account where name=#{name} and password=#{password}")
 	public Account login(Account account);
+	
+	@Select("select * from account where id=#{id}")
+	public Account queryById(int id);
 
 }
